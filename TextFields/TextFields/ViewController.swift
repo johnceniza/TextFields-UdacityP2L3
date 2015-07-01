@@ -17,10 +17,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var characterCountLabel: UILabel!
     
     // Text Field Delegate objects
-    let emojiDelegate = EmojiTextFieldDelegate()
-    let colorizerDelegate = ColorizerTextFieldDelegate()
-    let randomColordelegate = RandomColorTextFieldDelegate()
-
+    let zipCodeDelegate = ZipCodeFieldDelegate()
+    let cashFieldDelegate = CashTextFieldDelegate()
+    
     // Life Cycle Methods
     
     override func viewDidLoad() {
@@ -30,16 +29,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.characterCountLabel.hidden = true
         
         // Set the three delegates
-        self.textField1.delegate = emojiDelegate
-        self.textField2.delegate = randomColordelegate
+        self.textField1.delegate = zipCodeDelegate
+        self.textField2.delegate = cashFieldDelegate
         self.textField3.delegate = self //JC Notes: Using self as delegate because this specific text field requires a UILabel in the same view to be updated based on changes in this textfield!
     }
 
     
     // Text Field Delegate Methods
-    
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-
         // Figure out what the new text will be, if we return true
         var newText: NSString = textField.text
         newText = newText.stringByReplacingCharactersInRange(range, withString: string)
@@ -52,12 +49,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // returning true gives the text field permission to change its text
         return true;
-    }
-    
-    //JC: Implementing textFieldDidEndEditing example
-    func textFieldDidEndEditing(textField: UITextField) {
-        var newText: NSString = textField.text
-        self.characterCountLabel.text = (newText as String) + " - this is " + String(newText.length) + " characters long"
     }
 }
 
