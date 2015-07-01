@@ -19,7 +19,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // Text Field Delegate objects
     let emojiDelegate = EmojiTextFieldDelegate()
     let colorizerDelegate = ColorizerTextFieldDelegate()
-    
+    let randomColordelegate = RandomColorTextFieldDelegate()
+
     // Life Cycle Methods
     
     override func viewDidLoad() {
@@ -30,8 +31,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // Set the three delegates
         self.textField1.delegate = emojiDelegate
-        self.textField2.delegate = colorizerDelegate
-        self.textField3.delegate = self
+        self.textField2.delegate = randomColordelegate
+        self.textField3.delegate = self //JC Notes: Using self as delegate because this specific text field requires a UILabel in the same view to be updated based on changes in this textfield!
     }
 
     
@@ -51,6 +52,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         // returning true gives the text field permission to change its text
         return true;
+    }
+    
+    //JC: Implementing textFieldDidEndEditing example
+    func textFieldDidEndEditing(textField: UITextField) {
+        var newText: NSString = textField.text
+        self.characterCountLabel.text = (newText as String) + " - this is " + String(newText.length) + " characters long"
     }
 }
 
