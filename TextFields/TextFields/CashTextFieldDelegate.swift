@@ -12,18 +12,30 @@ import UIKit
 class CashTextFieldDelegate : NSObject, UITextFieldDelegate {
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        //TODO: BUG - Strange bug after entring 15 characters. This is probably a memory problem related to Doubles or the CurrencyStyle of NSNumberFormatter
+        
+        //initalize NSNumberFormatter to help us format the string properly and set style to currency (assuming locale is in the U.S.A.)
+        var formatter = NSNumberFormatter()
+        formatter.numberStyle = .CurrencyStyle
+        
         // Construct the text that will be in the field if this change is accepted
         var newText = textField.text as NSString
-        newText = newText.stringByReplacingOccurrencesOfString(".", withString: "")
-        newText = newText.stringByReplacingOccurrencesOfString("$", withString: "")
+        newText = newText.stringByReplacingCharactersInRange(range, withString: string)
         
-        var characters = Array(String(newText))
+        //get number value of string in text field which adheres to currency style (i.e. $x.xx)
+        var inputNumber = formatter.numberFromString(newText as String) as! Double
         
-        characters.insert(".", atIndex: characters.count-2)
-        characters.insert("$", atIndex: 0)
+        //multiply number by 10 to shift decimal place over one space to the right
+        inputNumber = inputNumber*10.000
         
-        println("\(characters)")
+        //use nsnumberformatter to convert our calculated number back to string
+        newText = formatter.stringFromNumber(inputNumber as NSNumber)!
         
-        return true
+        //set textfield to our newText - return false because we are manually setting the new textField since there are formatting requirements
+        textField.text = newText as String
+        
+        return false
     }
+
 }
