@@ -34,20 +34,28 @@
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x8x-lW-EqZ">
-                                <rect key="frame" x="16" y="104" width="288" height="30"/>
+                                <rect key="frame" x="16" y="104" width="218" height="30"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="218" id="Q29-7Z-fUr"/>
                                     <constraint firstAttribute="height" constant="30" id="cZ4-Ff-5vX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zKk-mk-oHd">
+                                <rect key="frame" x="255" y="104" width="51" height="31"/>
+                                <connections>
+                                    <action selector="textFieldSwitch:" destination="vXZ-lx-hvc" eventType="valueChanged" id="jhO-yH-nEp"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.58709395559210531" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="b5d-35-VHU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="21H-QM-esp"/>
                             <constraint firstItem="b5d-35-VHU" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="CDF-pd-P9F"/>
+                            <constraint firstItem="zKk-mk-oHd" firstAttribute="top" secondItem="FND-fQ-FKU" secondAttribute="bottom" constant="8" id="EY7-7b-biL"/>
+                            <constraint firstItem="zKk-mk-oHd" firstAttribute="leading" secondItem="x8x-lW-EqZ" secondAttribute="trailing" constant="21" id="KsF-BX-5hB"/>
                             <constraint firstItem="FND-fQ-FKU" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="MX8-Wf-RzC"/>
-                            <constraint firstItem="x8x-lW-EqZ" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="YuR-vl-4bl"/>
                             <constraint firstItem="b5d-35-VHU" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="Zte-LW-xA1"/>
                             <constraint firstItem="x8x-lW-EqZ" firstAttribute="top" secondItem="FND-fQ-FKU" secondAttribute="bottom" constant="8" id="a5T-bo-Ks8"/>
                             <constraint firstItem="FND-fQ-FKU" firstAttribute="top" secondItem="b5d-35-VHU" secondAttribute="bottom" constant="8" id="juk-Pm-vD8"/>
@@ -56,6 +64,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="switcher" destination="zKk-mk-oHd" id="3tR-MW-Bbk"/>
                         <outlet property="textField1" destination="b5d-35-VHU" id="JJa-zq-XKJ"/>
                         <outlet property="textField2" destination="FND-fQ-FKU" id="wKW-y7-Gz9"/>
                         <outlet property="textField3" destination="x8x-lW-EqZ" id="D4x-7k-BPl"/>
