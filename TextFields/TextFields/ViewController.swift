@@ -34,7 +34,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.textField3.delegate = self //JC Notes: Using self as delegate because this specific text field requires a UILabel in the same view to be updated based on changes in this textfield!
     }
 
-    
     @IBAction func textFieldSwitch(sender: UISwitch) {
         if sender.on {
             self.textField3.enabled = true

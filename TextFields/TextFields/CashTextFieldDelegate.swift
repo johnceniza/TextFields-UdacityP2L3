@@ -21,13 +21,20 @@ class CashTextFieldDelegate : NSObject, UITextFieldDelegate {
         
         // Construct the text that will be in the field if this change is accepted
         var newText = textField.text as NSString
+
         newText = newText.stringByReplacingCharactersInRange(range, withString: string)
         
         //get number value of string in text field which adheres to currency style (i.e. $x.xx)
         var inputNumber = formatter.numberFromString(newText as String) as! Double
-        
-        //multiply number by 10 to shift decimal place over one space to the right
-        inputNumber = inputNumber*10.000
+
+        //check if backspace is tapped
+        if ((string as NSString).length == 0) {
+            //divide number by 10 to shift decimal place over one space to the left
+            inputNumber = inputNumber/10.000
+        } else {
+            //multiply number by 10 to shift decimal place over one space to the right
+            inputNumber = inputNumber*10.000
+        }
         
         //use nsnumberformatter to convert our calculated number back to string
         newText = formatter.stringFromNumber(inputNumber as NSNumber)!
