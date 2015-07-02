@@ -52,5 +52,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // returning true gives the text field permission to change its text
         return true;
     }
+    
+    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+        var opQueue = NSOperationQueue.mainQueue()
+        
+        opQueue.addOperationWithBlock() {
+            UIMenuController.sharedMenuController().setMenuVisible(false, animated: false)
+        }
+        
+        return true
+    }
 }
 
