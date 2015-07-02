@@ -10,14 +10,16 @@ import Foundation
 import UIKit
 
 class ZipCodeFieldDelegate : NSObject, UITextFieldDelegate {
-
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        // Construct the text that will be in the field if this change is accepted
+        
         var newText = textField.text as NSString
         newText = newText.stringByReplacingCharactersInRange(range, withString: string)
-
-        return true
+        
+        if newText.length >= 6 {
+            return false
+        } else {
+            return true
+        }
     }
-
 }

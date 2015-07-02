@@ -14,7 +14,15 @@ class CashTextFieldDelegate : NSObject, UITextFieldDelegate {
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         // Construct the text that will be in the field if this change is accepted
         var newText = textField.text as NSString
-        newText = newText.stringByReplacingCharactersInRange(range, withString: string)
+        newText = newText.stringByReplacingOccurrencesOfString(".", withString: "")
+        newText = newText.stringByReplacingOccurrencesOfString("$", withString: "")
+        
+        var characters = Array(String(newText))
+        
+        characters.insert(".", atIndex: characters.count-2)
+        characters.insert("$", atIndex: 0)
+        
+        println("\(characters)")
         
         return true
     }
